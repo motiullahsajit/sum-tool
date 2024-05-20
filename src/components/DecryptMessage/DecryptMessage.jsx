@@ -8,6 +8,7 @@ const DecryptMessage = () => {
   const [publicKey, setPublicKey] = useState("");
   const [decryptedMessage, setDecryptedMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
 
   const decryptMessage = () => {
     setLoading(true);
@@ -30,7 +31,16 @@ const DecryptMessage = () => {
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(
+      () => {
+        setCopyStatus("Copied!");
+        setTimeout(() => setCopyStatus(""), 2000);
+      },
+      (err) => {
+        setCopyStatus("Failed to copy");
+        setTimeout(() => setCopyStatus(""), 2000);
+      }
+    );
   };
 
   return (
@@ -70,6 +80,7 @@ const DecryptMessage = () => {
         >
           c
         </button>
+        {copyStatus && <span>{copyStatus}</span>}
       </div>
     </div>
   );

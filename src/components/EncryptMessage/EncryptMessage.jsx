@@ -8,6 +8,7 @@ const EncryptMessage = () => {
   const [passphrase, setPassphrase] = useState("");
   const [encryptedMessage, setEncryptedMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
 
   const encryptMessage = () => {
     setLoading(true);
@@ -29,7 +30,16 @@ const EncryptMessage = () => {
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(
+      () => {
+        setCopyStatus("Copied!");
+        setTimeout(() => setCopyStatus(""), 2000);
+      },
+      (err) => {
+        setCopyStatus("Failed to copy");
+        setTimeout(() => setCopyStatus(""), 2000);
+      }
+    );
   };
 
   return (
@@ -60,7 +70,7 @@ const EncryptMessage = () => {
         {loading ? "Encrypting..." : "Encrypt"}
       </button>
       {loading && <p>Encrypting, please wait...</p>}
-      <div style={{ position: "relative" }}>
+      <div>
         <h3>Encrypted Message</h3>
         <textarea value={encryptedMessage} readOnly />
         <button
@@ -69,6 +79,7 @@ const EncryptMessage = () => {
         >
           c
         </button>
+        {copyStatus && <span>{copyStatus}</span>}
       </div>
     </div>
   );

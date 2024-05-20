@@ -17,7 +17,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   padding: 20px;
 }
 
@@ -64,7 +63,6 @@ li:hover {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  height: 100%;
 }
 
 textarea,
