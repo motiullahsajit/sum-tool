@@ -22,6 +22,10 @@ const KeyGenerator = () => {
       setPublicKeyPem(publicKeyPemK);
       setPrivateKeyPem(privateKeyPemK);
       setLoading(false);
+
+      setName("");
+      setEmail("");
+      setPassphrase("");
     }, 100);
   };
 
@@ -72,7 +76,7 @@ const KeyGenerator = () => {
           className="copy-button"
           onClick={() => copyToClipboard(publicKeyPem, "publicKey")}
         >
-          C
+          c
         </button>
         {copyStatus.publicKey && <span>{copyStatus.publicKey}</span>}
       </div>
@@ -83,7 +87,7 @@ const KeyGenerator = () => {
           className="copy-button"
           onClick={() => copyToClipboard(privateKeyPem, "privateKey")}
         >
-          C
+          c
         </button>
         {copyStatus.privateKey && <span>{copyStatus.privateKey}</span>}
       </div>

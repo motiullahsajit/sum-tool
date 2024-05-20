@@ -28,6 +28,10 @@ const EncryptMessage = () => {
     }, 100);
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <div>
       <h2>Encrypt Message</h2>
@@ -56,9 +60,15 @@ const EncryptMessage = () => {
         {loading ? "Encrypting..." : "Encrypt"}
       </button>
       {loading && <p>Encrypting, please wait...</p>}
-      <div>
+      <div style={{ position: "relative" }}>
         <h3>Encrypted Message</h3>
         <textarea value={encryptedMessage} readOnly />
+        <button
+          onClick={() => copyToClipboard(encryptedMessage)}
+          className="copy-button"
+        >
+          c
+        </button>
       </div>
     </div>
   );

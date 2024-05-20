@@ -29,6 +29,10 @@ const DecryptMessage = () => {
     }, 100);
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <div>
       <h2>Decrypt Message</h2>
@@ -57,9 +61,15 @@ const DecryptMessage = () => {
         {loading ? "Decrypting..." : "Decrypt"}
       </button>
       {loading && <p>Decrypting, please wait...</p>}
-      <div>
+      <div style={{ position: "relative" }}>
         <h3>Decrypted Message</h3>
         <textarea value={decryptedMessage} readOnly />
+        <button
+          className="copy-button"
+          onClick={() => copyToClipboard(decryptedMessage)}
+        >
+          c
+        </button>
       </div>
     </div>
   );
